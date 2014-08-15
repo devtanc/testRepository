@@ -19,5 +19,5 @@ io.on('connection', function (socket) {
 
 var port = Number(process.env.PORT || 5000);
 http.listen(port, function () {
-    console.log(“listening on: “ + port);
+    console.log('Listening on: ' + port);
 });
