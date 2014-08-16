@@ -11,8 +11,9 @@
         <li ng-repeat="message in messages" ng-class="{'server':username != message.user}">{{message.user}}: {{message.message}} <span class="time">{{message.date | date:'mediumTime'}}</span></li>
     </ul>
     <div id="tools">
-        <form name="Login" ng-hide="loggedIn" ng-submit="(username != '') ? (loggedIn = true) : (loggedIn = false)">
+        <form name="Login" ng-hide="loggedIn" ng-submit="login(username)">
             <input id="username" autocomplete="off" placeholder="Username..." ng-model="username"/>
+            <button>Log In</button>
         </form>
         
         <div id="loggedin" ng-show="loggedIn" ng-cloak>Logged in as: {{username}}</div>
@@ -21,7 +22,7 @@
             <input id="messageBar" placeholder="Type here..." ng-model="message"/>
         </form>
         <div class="clear"></div>
-        <div id="statusbar">{{status}}</div>
+        <div id="statusbar" ng-class="status.type">{{status.text}}</div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>

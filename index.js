@@ -12,9 +12,7 @@ app.get('/', function (req, res) {
 });
 
 io.sockets.on('connection', function (socket) {
-    console.log('a user connected');
-
-    io.sockets.emit('status update', 'New user connected!');
+    socket.broadcast.emit('status update', {method:'broadcast', type:'new-user', text:'New user connected!', user:'unknown'} );
 
     socket.on('disconnect', function () {
         console.log('user disconnected');
@@ -23,11 +21,19 @@ io.sockets.on('connection', function (socket) {
     socket.on('chat message', function (msg) {
         console.log('message: ' + msg.message + '\nfrom: ' + msg.user);
         io.sockets.emit('chat message', msg);
-        socket.emit('status update', 'Message sent!');
-        socket.broadcast.emit('status update', 'Message received from [' + msg.user + ']!')
+        socket.emit('status update', {method:'reply', type:'message', text:'Message sent!', user:msg.user});
+        socket.broadcast.emit('status update', {method:'broadcast', type:'message', text:'Message received from [' + msg.user + ']', user:msg.user})
     });
 
-    socket.on('typing', function (user){
-        io.sockets.emit('status update', user + ' currently typing...');
+    socket.on('update', function (data){
+        console.log("Received update from [" + data.user + "]");
+        if(data.method == 'broadcast') {
+            console.log("Broadcasting data");
+            socket.broadcast.emit('status update', data);
+        } else
+        if(data.method == 'reply') {
+            console.log("Sending data back to user [" + data.user + "]");
+            io.sockets.emit('status update', data);
+        }
     })
 });

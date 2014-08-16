@@ -56,6 +56,15 @@ form button {
     padding:0px 10px;
     margin-top:5px;
 }
+#statusbar.error {
+    color:red;
+}
+#statusbar.new-user {
+    color:green;
+}
+#statusbar.typing {
+    color:white;
+}
 #messages {
     list-style-type: none;
     margin: 0;
