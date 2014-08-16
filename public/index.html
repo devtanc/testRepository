@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app="chatRoom">
+
+<head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+
+<body ng-controller="chatRoomController">
+    <ul id="messages">
+        <li ng-repeat="message in messages" ng-class="{'server':username != message.user}">{{message.user}}: {{message.message}} <span class="time">{{message.date | date:'mediumTime'}}</span></li>
+    </ul>
+    <div id="tools">
+        <form name="Login" ng-hide="loggedIn" ng-submit="(username != '') ? (loggedIn = true) : (loggedIn = false)">
+            <input id="username" autocomplete="off" placeholder="Username..." ng-model="username"/>
+        </form>
+        
+        <div id="loggedin" ng-show="loggedIn" ng-cloak>Logged in as: {{username}}</div>
+
+        <form name="MessageCenter" ng-submit="message ? sendMessage(message) : {}">
+            <input id="messageBar" placeholder="Type here..." ng-model="message"/>
+        </form>
+        <div class="clear"></div>
+        <div id="statusbar">{{status}}</div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

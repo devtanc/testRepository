@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.clear {
+    clear:both;
+}
+body {
+    font: 13px Helvetica, Arial;
+}
+#tools {
+    background: grey;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+#loggedin {
+    float:left;
+    border: 0;
+    padding: 5px;
+    width: 50%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background-color: white;
+    color:#FF8200;
+    font-weight: bold;
+}
+form input#username {
+    float:left;
+    border: 0;
+    padding: 5px;
+    width: 25%;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+form input#messageBar {
+    border: 0;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+}
+form button {
+    background: rgb(130, 224, 255);
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    margin: 0px 5px;
+}
+#statusbar {
+    background-color: lightgrey;
+    color:grey;
+    border-radius: 5px;
+    width:100%;
+    padding:0px 10px;
+    margin-top:5px;
+}
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#messages li {
+    padding: 5px 10px;
+}
+li.server {
+    background: #eee;
+}
+#messages span.time {
+    color:lightgrey;
+    font-size: 10px;
+}
+.ng-hide {
+    display: none;
+}
